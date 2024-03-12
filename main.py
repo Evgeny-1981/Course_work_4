@@ -3,25 +3,20 @@ import os
 import csv
 import json
 from datetime import datetime
-
-
-def get_vacancy(name):
-    t_date = datetime.now().strftime('%d-%m-%Y')
-    params = {
-        'text': f'name:{name}',  # Текст фильтра. В имени должно быть слово "Аналитик"
-        'page': 1,  # Индекс страницы поиска на HH
-        'per_page': 190  # Кол-во вакансий на 1 странице
-    }
-    response = requests.get(url='https://api.hh.ru/vacancies', params=params)
-    with open(f'info_{t_date}.json', 'w') as file:
-        json.dump(response.json(), file, indent=2, ensure_ascii=False)
-
-    vacancy = response.json()
+from config import DATA_PATH
+from src.api import HeadHunterAPI
 
 
 def main():
-    get_vacancy('Python')
-
+    query_vacancy = input("Какую вакансию будем искать? ")
+    hh_api = HeadHunterAPI()
+    hh_vacancy = hh_api.get_vacancy(query_vacancy)
+    # print(hh_api.get_vacancy(query_vacancy))
+    n = 1
+    for item in hh_vacancy:
+        if (item['salary']):
+            print(f'{n}. {item['name']}, {item['area']['name']}, {item['alternate_url']}, {item['salary']['from']}-{item['salary']['to']}')
+            n += 1
 
 
 if __name__ == '__main__':

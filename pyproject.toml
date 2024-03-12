@@ -1,4 +1,4 @@
-[tool.poetry]
+clear[tool.poetry]
 name = "course-work-4"
 version = "0.1.0"
 description = ""
