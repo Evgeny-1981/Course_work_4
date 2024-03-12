@@ -34,7 +34,6 @@ class HeadHunterAPI:
         list_vacancy = []
         params = {
             'text': f'NAME:{name}',  # Текст фильтра. В имени должно быть слово "Аналитик"
-            # 'area': 2,  # Поиск ощуществляется по вакансиям города Москва
             'page': 1,  # Индекс страницы поиска на HH
             'per_page': 1  # Кол-во вакансий на 1 странице
         }
@@ -48,5 +47,5 @@ class HeadHunterAPI:
 
 
 p = HeadHunterAPI()
-print(p.get_vacancy('Инженер'))
-print(req.status_codes)
+print(p.get_vacancy('Python'))
+
