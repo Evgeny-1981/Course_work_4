@@ -2,9 +2,9 @@ class Vacancy:
     vacancy_title: str  # название вакансии
     vacancy_link: str  # ссылка на вакансию
     vacancy_company_name: str  # название работодателя
-    vacancy_address: str  # адрес работодателя
-    employment_mode: str  # режим работы
-    work_experience: str  # опыт работы
+    # vacancy_address: str  # адрес работодателя
+    # employment_mode: str  # режим работы
+    # work_experience: str  # опыт работы
     salary_compensation_from: float  # зарплата от
     salary_compensation_to: float  # зарплата до
     vacancy_responsibility: str  # описание вакансии
@@ -31,8 +31,17 @@ class Vacancy:
                 f'{self.employment_mode}, {self.work_experience}, {self.salary_compensation_from}-'
                 f'{self.salary_compensation_to}, {self.vacancy_responsibility}, {self.vacancy_requirement}')
 
-    def compare_vacancy(self):
+    def validate_vacancy(self):
         pass
 
-    def validate_data(self):
-        pass
+    def validate_salary(self):
+        """Проверка по зарплате"""
+        if self.salary_compensation_from:
+            return self.salary_compensation_from
+        elif self.salary_compensation_to:
+            return self.salary_compensation_to
+        else:
+            return False
+
+        def __lt__(self, other):
+            return self.salary < other.salary

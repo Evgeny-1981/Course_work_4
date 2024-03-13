@@ -10,12 +10,14 @@ from src.api import HeadHunterAPI
 def main():
     query_vacancy = input("Какую вакансию будем искать? ")
     hh_api = HeadHunterAPI()
+    print(hh_api.get_vacancy)
     hh_vacancy = hh_api.get_vacancy(query_vacancy)
-    # print(hh_api.get_vacancy(query_vacancy))
+    # print(hh_api.get_vacancy)
     n = 1
     for item in hh_vacancy:
-        if (item['salary']):
-            print(f'{n}. {item['name']}, {item['area']['name']}, {item['alternate_url']}, {item['salary']['from']}-{item['salary']['to']}')
+        if item['salary']:
+            print(f'{n}. {item['name']}, {item['area']['name']}, {item['alternate_url']}, '
+                  f'ЗП {item['salary']['from']}-{item['salary']['to']}')
             n += 1
 
 

@@ -13,11 +13,7 @@ class AbstractAPI(ABC):
     @abstractmethod
     def __init__(self):
         pass
-    #
-    # @abstractmethod
-    # def __str__(self):
-    #     pass
-    #
+
     @abstractmethod
     def __repr__(self):
         pass
@@ -32,7 +28,7 @@ class HeadHunterAPI(AbstractAPI):
         self.url = 'http://api.hh.ru/vacancies'
 
     def __repr__(self):
-        return f'Осуществляется подключение класса {self.__class__.__name__} HH для получения вакансии'
+        return f'Осуществляется подключение класса {self.__class__.__name__} к сайту HH для получения вакансии'
 
     def get_vacancy(self, query_vacancy):
         """Получаем вакансии с HH"""
@@ -40,14 +36,14 @@ class HeadHunterAPI(AbstractAPI):
         t_date = datetime.now().strftime('%d-%m-%Y %H-%M-%S')
         FILE = os.path.join(DATA_PATH, f'Vavancy_{t_date}.json')
         params = {
-            'text': f'name:{query_vacancy}',  # Текст фильтра.
+            'text': f'name:{query_vacancy}',  # Текст фильтра
             'page': 10,  # Индекс страницы поиска на HH
-            'per_page': 30  # Кол-во вакансий на 1 странице
+            'per_page': 100  # Кол-во вакансий на 1 странице
         }
         response = requests.get(url=self.url, params=params)
-        vacancy_list = (json.loads(response.text)['items'])
+        vacancy_list = json.loads(response.text)['items']
         with open(FILE, 'w') as file:
-            json.dump(vacancy_list, file, indent=2, ensure_ascii=False)
+            json.dump(vacancy_list, file, indent=4)
 
         return vacancy_list
 
