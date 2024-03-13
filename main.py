@@ -23,7 +23,8 @@ def main():
             n += 1
 
     for i in data:
-        print(i)
+        if i['salary']:
+            print(i)
 
 if __name__ == '__main__':
     main()
