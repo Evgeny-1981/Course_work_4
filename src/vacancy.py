@@ -37,11 +37,15 @@ class Vacancy:
     def validate_salary(self):
         """Проверка по зарплате"""
         if self.salary_compensation_from:
-            return self.salary_compensation_from
+            return True
         elif self.salary_compensation_to:
-            return self.salary_compensation_to
+            return True
         else:
             return False
 
-        def __lt__(self, other):
-            return self.salary < other.salary
+    @staticmethod
+    def __lt__(self, other):
+        if self.self.salary_compensation_from > other.self.salary_compensation_from:
+            return self.self.salary_compensation_from
+
+

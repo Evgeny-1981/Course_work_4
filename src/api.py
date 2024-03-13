@@ -3,7 +3,7 @@ import requests
 import time
 from datetime import datetime
 import os
-from config import DATA_PATH
+from config import VACANCY_FILE, DATA_PATH
 from abc import ABC, abstractmethod
 
 
@@ -34,17 +34,27 @@ class HeadHunterAPI(AbstractAPI):
         """Получаем вакансии с HH"""
         vacancy_list = []
         t_date = datetime.now().strftime('%d-%m-%Y %H-%M-%S')
-        FILE = os.path.join(DATA_PATH, f'Vavancy_{t_date}.json')
+        FILE = os.path.join(DATA_PATH, f'Vacancy_HH.json')
         params = {
             'text': f'name:{query_vacancy}',  # Текст фильтра
             'page': 10,  # Индекс страницы поиска на HH
             'per_page': 100  # Кол-во вакансий на 1 странице
         }
         response = requests.get(url=self.url, params=params)
-        vacancy_list = json.loads(response.text)['items']
-        with open(FILE, 'w') as file:
-            json.dump(vacancy_list, file, indent=4)
+        vacancy_dict = response.json()
+        # print(type(vacancy_dict))
+        vacancy_list = json.loads(response.content)['items']
+        # print(type(vacancy_list))
+        with open(FILE, 'w', encoding='utf-8', errors='ignore') as file:
+            json.dump(vacancy_list, file, indent=4, ensure_ascii=False)
 
         return vacancy_list
+
+    def read_file(self):
+        with open(VACANCY_FILE, 'r', encoding='utf-8') as file:
+            data = json.load(file)
+        # print(type(data))
+        return data
+
 
 
