@@ -9,24 +9,30 @@ from src.api import HeadHunterAPI
 
 def main():
     query_vacancy = input("Какую вакансию будем искать? ")
+    # query_city = input("В каком городе? ")
+    query_salary = input("Начальный уровень зарплаты? ")
+    # query_n_vacancy = input("Сколько вакансий ввести? ")
     hh_api = HeadHunterAPI()
-    print(hh_api.get_vacancy)
+    print(repr(hh_api))
     hh_vacancy = hh_api.get_vacancy(query_vacancy)
-    # print(hh_api.get_vacancy)
-    data = hh_api.read_file()
-    # print(type(data))
-    # n = 1
-    # for item in hh_vacancy:
-    #     if item['salary']:
-    #         print(f'{n}. {item['name']}, {item['area']['name']}, {item['alternate_url']}, '
-    #               f'ЗП {item['salary']['from']}-{item['salary']['to']}, {item['snippet']}')
-    #         n += 1
-    #
-    # for i in data:
-    #     # if i['salary']:
-    #     print(i)
+    print(type(hh_vacancy))
+    for n in hh_vacancy:
+        if isinstance(n['salary'], dict):
+            name = n.get('name')
+            salary = n.get('salary')
+            salary_from = salary.get('from')
+            salary_to = salary.get('to')
+            print(name, salary_from, salary_to)
+
+
     v = hh_api.read_file()
-    for i in v['items']:
-        print(i['name'], i['salary'])
+    for i in v:
+        if isinstance(i['salary'], dict):
+            if i['salary']['from'] >= int(query_salary):# and i['salary']['to']:
+
+                print(f'{i['salary']['from']}')# - {i['salary']['to']}')
+        # print(i['name'], i['salary'])
+
+
 if __name__ == '__main__':
     main()
