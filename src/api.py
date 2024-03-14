@@ -43,11 +43,23 @@ class HeadHunterAPI(AbstractAPI):
         response = requests.get(url=self.url, params=params)
         vacancy_dict = response.json()
         # print(type(vacancy_dict))
-        vacancy_list = json.loads(response.content)['items']
+        vacancy_list = json.loads(response.text)['items']
         # print(type(vacancy_list))
-        with open(FILE, 'w', encoding='utf-8', errors='ignore') as file:
-            json.dump(vacancy_list, file, indent=4, ensure_ascii=False)
+        with open(FILE, 'w', encoding='utf-8') as file:
+            json.dump(response.json(), file, indent=4, ensure_ascii=False)
+        vacancy = response.json()
 
+        # for c in vacancy:
+        #     return c
+            # print(c)
+            # c_items = c.get('items')
+            # c_name = c.get(['name'])
+        #
+        #     for item in c_items:
+        #         item_name = item.get('name')
+        #         # item_salary = item.get('salary')
+        #     # json.dump(vacancy_list, file, indent=4, ensure_ascii=False)
+        #     vacancy_list.append([c_name, item_name])
         return vacancy_list
 
     def read_file(self):
