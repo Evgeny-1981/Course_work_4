@@ -1,3 +1,9 @@
+import json
+import os
+
+from config import DATA_PATH
+
+
 class Vacancy:
     vacancy_title: str  # название вакансии
     vacancy_link: str  # ссылка на вакансию
@@ -42,4 +48,22 @@ class Vacancy:
         if self.salary_from > other.salary_from:
             return self.salary_from
 
+    def load_vacancy_from_json():
+        """Загрузка вакансий из файла json"""
+        VACANCY_FILE = os.path.join(DATA_PATH, 'Vacancy_HH.json')
+        with open(VACANCY_FILE, 'r', encoding='utf8') as file:
+            data = json.load(file)
+            vacancy_list = []
 
+        for item in data:
+            vacancy = Vacancy('self.name',
+                                'alternate_url',
+                              'address',
+                              'employer',
+                              'salary''from',
+                              'salary''to',
+                              'snippet''requirement',
+                              'snippet''responsibility')
+            vacancy_list.append(vacancy),
+
+        return vacancy_list
