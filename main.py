@@ -24,7 +24,7 @@ def main():
     #     if isinstance(item['salary_from'], int):
     sorted_vacancy = sorted(hh_vacancy, key=lambda x: x['salary_from'], reverse=True)
 
-    for item in sorted_vacancy:
+    for item in sorted_vacancy[:5]:
         print(item)
 
 
