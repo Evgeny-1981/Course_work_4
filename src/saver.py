@@ -24,7 +24,8 @@ class Saver(ABC):
     def del_vacancy(self):
         pass
 
-class JSON(Saver):
+
+class JSONSaver(Saver):
 
     def __init__(self):
         pass

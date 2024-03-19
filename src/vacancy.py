@@ -27,21 +27,20 @@ class Vacancy:
 
     def __str__(self):
         """Добавляем строковое отображение"""
-        return (f'{self.vacancy_title}, {self.vacancy_link}, {self.vacancy_city}, '
-                f'{self.company_name}, {self.salary_from}-'
-                f'{self.salary_to}, {self.vacancy_responsibility}, {self.vacancy_requirements}')
+        return (f'{self.vacancy_title}, {self.vacancy_link}, {self.vacancy_city},'
+                f'{self.company_name}, {self.salary_from}-{self.salary_to},'
+                f'{self.vacancy_responsibility}, {self.vacancy_requirements}')
 
     def validate_vacancy(self):
         pass
 
     def validate_salary(self):
         """Проверка по зарплате"""
-        if self.salary_from:
-            return True
-        elif self.salary_to:
-            return True
-        else:
-            return False
+        if not self.salary_from:
+            return "Зарплата ОТ не указана"
+        elif not self.salary_to:
+            return "Зарплата ДО не указана"
+
 
     @staticmethod
     def __lt__(self, other):

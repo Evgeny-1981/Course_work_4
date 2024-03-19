@@ -1,19 +1,28 @@
-import requests
-import os
-import csv
-import json
-from datetime import datetime
+from src.api import HeadHunterAPI
+from src.vacancy import Vacancy
 
-def get_vacancy():
-    t_date = datetime.now().strftime('%d-%m-%Y')
-    response = requests.get(url='https://api.hh.ru/vacancies')
-    with open(f'info_{t_date}.json', 'w') as file:
-        json.dump(response.json(), file, indent=4, ensure_ascii=False)
 
-    vacancy = response.json()
+def user_interaction():
+    query_vacancy = input("Input vacancy name ")
+    # other_params = input("Желаете уточнить параметры поиска? (Да(Y)/Нет(N)")
+    # if other_params.lower() == "Y":
+    # query_city = input("В каком городе? ")
+    # query_salary = input("Начальный уровень зарплаты? ")
+    # query_n_vacancy = input("Сколько вакансий вывести? ")
 
-def main():
-    get_vacancy()
+    hh_api = HeadHunterAPI()
+    hh_vacancy = hh_api.get_vacancy(query_vacancy)
+    print(repr(hh_api))
+    list_json_vacancy = hh_api.save_json(hh_vacancy)
 
-if __name__ == '__func__':
-    func()
+
+    # print(hh_vacancy)
+
+    # hh_vacancy = hh_api.get_vacancy(query_vacancy)
+
+    # for item in hh_vacancy:
+    #     if isinstance(item['salary_from'], int):
+    # sorted_vacancy = sorted(hh_vacancy, key=lambda x: x['salary_from'], reverse=True)
+    #
+    # for item in sorted_vacancy[:5]:
+    #     print(item)
