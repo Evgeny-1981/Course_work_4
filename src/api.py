@@ -53,9 +53,9 @@ class HeadHunterAPI(AbstractAPI):
                 salary_from = item['salary']['from']
                 salary_to = item['salary']['to']
                 if item['salary']['from'] is None:
-                    salary_from = "Зарплата не указана"
+                    salary_from = "Не указана"
                 if item['salary']['to'] is None:
-                    salary_to = "Зарплата не указана"
+                    salary_to = "Не указана"
                 # if item['salary']['from'] and item['salary']['to']:
                 item_dict = {'vacancy_title': item['name'],
                             'vacancy_link': item['alternate_url'],
