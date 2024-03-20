@@ -1,9 +1,11 @@
+import encodings
+
 from src.api import HeadHunterAPI
 from src.vacancy import Vacancy
 
 
 def user_interaction():
-    query_vacancy = input("Input vacancy name ")
+    query_vacancy = input("Vacancy? ")
     # other_params = input("Желаете уточнить параметры поиска? (Да(Y)/Нет(N)")
     # if other_params.lower() == "Y":
     # query_city = input("В каком городе? ")
