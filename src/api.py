@@ -1,7 +1,7 @@
 import json
 import requests
 import os
-from config import VACANCY_FILE, DATA_PATH
+from config import DATA_PATH
 from abc import ABC, abstractmethod
 
 
@@ -30,20 +30,21 @@ class HeadHunterAPI(AbstractAPI):
         self.vacancy = []
 
     def __repr__(self):
-        return f'Выполняется подключение класса {self.__class__.__name__} к сайту HH для получения вакансии...'
+        return f'Ожидайте, выполняется подключение класса {self.__class__.__name__} к сайту HH для получения вакансии...\n'
 
-    def get_vacancy(self, query_vacancy)  -> object:
-        """Выполняем запрос к HeadHunter для получения вакансий"""
+    def get_vacancy(self, query_vacancy):
+        """Метод для запроса к HeadHunter для получения вакансий"""
 
-        file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
         self.params['text'] = query_vacancy
+        vacancy_list = []
         while self.params.get('page') != 20:
             response = requests.get(self.url, headers=self.headers, params=self.params)
             vacancy = response.json()['items']
             self.vacancy.extend(vacancy)
             self.params['page'] += 1
+            vacancy_list = self.vacancy
 
-            return self.vacancy
+            return vacancy_list
 
     def save_json(self, vacancy_json):
         file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
@@ -58,14 +59,15 @@ class HeadHunterAPI(AbstractAPI):
                     salary_to = "Не указана"
                 # if item['salary']['from'] and item['salary']['to']:
                 item_dict = {'vacancy_title': item['name'],
-                            'vacancy_link': item['alternate_url'],
-                            'vacancy_city': item['area']['name'],
-                            'company_name': item['employer']['name'],
-                            'salary_from': salary_from,
-                            'salary_to': salary_to,
-                            'vacancy_responsibility': item['snippet']['responsibility'],
-                            'vacancy_requirements': item['snippet']['requirement']
-                            }
+                             'vacancy_link': item['alternate_url'],
+                             'vacancy_city': item['area']['name'],
+                             'company_name': item['employer']['name'],
+                             'salary_from': salary_from,
+                             'salary_to': salary_to,
+                             'currency': item['salary']['currency'],
+                             'vacancy_responsibility': item['snippet']['responsibility'],
+                             'vacancy_requirements': item['snippet']['requirement']
+                             }
                 vacancy_list.append(item_dict)
 
             with open(file_json, 'w', encoding='utf-8') as file:

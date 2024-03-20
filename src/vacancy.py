@@ -2,7 +2,14 @@ import json
 import os
 
 from config import DATA_PATH
-
+# class Mixin:
+#     """Создаем класс для вывода информации о созданном объекте"""
+#
+#     def __init__(self):
+#         print(repr(self))
+#
+#     def __repr__(self):
+#         return f'Создан объект класса {self.__class__.__name__} с атрибутами: {self.__dict__}'
 
 class Vacancy:
     vacancy_title: str  # название вакансии
@@ -11,40 +18,72 @@ class Vacancy:
     company_name: str  # название работодателя
     salary_from: float  # зарплата от
     salary_to: float  # зарплата до
+    currency: str  # валюта
     vacancy_responsibility: str  # описание вакансии
     vacancy_requirements: str  # требования к вакансии
 
-    def __init__(self, vacancy_title, vacancy_link, vacancy_city, company_name,
-                 salary_from, salary_to, vacancy_responsibility, vacancy_requirements):
-        self.vacancy_title = vacancy_title
-        self.vacancy_link = vacancy_link
-        self.vacancy_city = vacancy_city
-        self.company_name = company_name
-        self.salary_from = salary_from
-        self.salary_to = salary_to
-        self.vacancy_responsibility = vacancy_responsibility
-        self.vacancy_requirements = vacancy_requirements
+    def __init__(self, dictionary):
+        self.vacancy_title = dictionary.get('vacancy_title')
+        self.vacancy_link = dictionary.get('vacancy_link')
+        self.vacancy_city = dictionary.get('vacancy_city')
+        self.company_name = dictionary.get('company_name')
+        self.salary_from = dictionary.get('salary_from')
+        self.salary_to = dictionary.get('salary_to')
+        self.currency = dictionary.get('currency')
+        if dictionary.get('vacancy_responsibility'):
+            self.vacancy_responsibility = dictionary.get('vacancy_responsibility')
+        else:
+            self.vacancy_responsibility = "Не указано"
+        if dictionary.get('vacancy_requirements'):
+            self.vacancy_requirements = dictionary.get('vacancy_requirements')
+        else:
+            self.vacancy_requirements = "Не указано"
+        # super().__init__()
+
+    # def __init__(self, vacancy_title, vacancy_link, vacancy_city, company_name,
+    #              salary_from, salary_to, currency, vacancy_responsibility, vacancy_requirements):
+    #     self.vacancy_title = vacancy_title
+    #     self.vacancy_link = vacancy_link
+    #     self.vacancy_city = vacancy_city
+    #     self.company_name = company_name
+    #     self.salary_from = salary_from
+    #     self.salary_to = salary_to
+    #     self.currency = currency
+    #     self.vacancy_responsibility = vacancy_responsibility
+    #     self.vacancy_requirements = vacancy_requirements
+
+    def create_vacancy(self, dictionary):
+        """Метод для добавления вакансии"""
+        pass
 
     def __str__(self):
         """Добавляем строковое отображение"""
-        return (f'{self.vacancy_title}, {self.vacancy_link}, {self.vacancy_city},'
-                f'{self.company_name}, {self.salary_from}-{self.salary_to},'
-                f'{self.vacancy_responsibility}, {self.vacancy_requirements}')
+        print('*' * 150)
+        return (f'Название вакансии, ссылка: {self.vacancy_title}, {self.vacancy_link}\n'
+                f'Город, компания: {self.vacancy_city}, {self.company_name} \n'
+                f'Уровень ЗП: {self.salary_from} - {self.salary_to}, {self.currency}\n'
+                f'Описание: {self.vacancy_responsibility}\n'
+                f'Требования: {self.vacancy_requirements}')
 
     def validate_vacancy(self):
         pass
 
-    def validate_salary(self):
-        """Проверка по зарплате"""
-        if not self.salary_from:
-            return "Зарплата ОТ не указана"
-        elif not self.salary_to:
-            return "Зарплата ДО не указана"
+    def check_salary_from(self):
+        """Метод проверяет указан ли начальный уровень зарплаты"""
+        if isinstance(self.salary_from, int) and self.salary_from > 0:
+            return True
+        else:
+            return False
 
-
+    def check_currency(self):
+        """Проверка валюты RUR или USD"""
+        if self.currency == "RUR":
+            return 'rur'
+        elif self.currency == "USD":
+            return 'usd'
+        else:
+            return False
     @staticmethod
     def __lt__(self, other):
         if self.salary_from > other.salary_from:
             return self.salary_from
-
-
