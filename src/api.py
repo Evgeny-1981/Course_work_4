@@ -37,14 +37,14 @@ class HeadHunterAPI(AbstractAPI):
 
         self.params['text'] = query_vacancy
         vacancy_list = []
-        while self.params.get('page') != 20:
-            response = requests.get(self.url, headers=self.headers, params=self.params)
-            vacancy = response.json()['items']
-            self.vacancy.extend(vacancy)
-            self.params['page'] += 1
-            vacancy_list = self.vacancy
+        # while self.params.get('page') != 20:
+        response = requests.get(f'{self.url}?per_page=100&page=0&text={query_vacancy}&search_field=name') #headers=self.headers, params=self.params')
+        vacancy = response.json()['items']
+        self.vacancy.extend(vacancy)
+        self.params['page'] += 1
+        vacancy_list = self.vacancy
 
-            return vacancy_list
+        return vacancy_list
 
     def save_json(self, vacancy_json):
         file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
@@ -57,7 +57,6 @@ class HeadHunterAPI(AbstractAPI):
                     salary_from = 0
                 if item['salary']['to'] is None:
                     salary_to = 0
-                # if item['salary']['from'] and item['salary']['to']:
                 item_dict = {'vacancy_title': item['name'],
                              'vacancy_link': item['alternate_url'],
                              'vacancy_city': item['area']['name'],
@@ -76,8 +75,8 @@ class HeadHunterAPI(AbstractAPI):
         return vacancy_list
 
 
-def read_file(self):
-    file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
-    with open(file_json, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-    return data
+# def read_file(self):
+#     file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
+#     with open(file_json, 'r', encoding='utf-8') as file:
+#         data = json.load(file)
+#     return data

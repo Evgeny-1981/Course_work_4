@@ -25,7 +25,6 @@ class Vacancy:
             self.vacancy_requirements = dictionary.get('vacancy_requirements')
         else:
             self.vacancy_requirements = "Не указано"
-        # super().__init__()
 
     # def __init__(self, vacancy_title, vacancy_link, vacancy_city, company_name,
     #              salary_from, salary_to, currency, vacancy_responsibility, vacancy_requirements):
@@ -39,6 +38,12 @@ class Vacancy:
     #     self.vacancy_responsibility = vacancy_responsibility
     #     self.vacancy_requirements = vacancy_requirements
 
+
+    def __repr__(self):
+        return (f'Vacancy {self.vacancy_title}, {self.vacancy_link}'
+                f'{self.vacancy_city}, {self.company_name}'
+                f'{self.salary_from} - {self.salary_to}, {self.currency}'
+                f'{self.vacancy_responsibility}, {self.vacancy_requirements}')
     def __str__(self):
         """Добавляем строковое отображение"""
         print('*' * 150)
@@ -62,9 +67,9 @@ class Vacancy:
     def check_currency(self):
         """Проверка валюты RUR или USD"""
         if self.currency == "RUR":
-            return 'rur'
+            return 'RUR'
         elif self.currency == "USD":
-            return 'usd'
+            return 'USD'
         else:
             return False
 
