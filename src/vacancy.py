@@ -1,23 +1,10 @@
-import json
-import os
-
-from config import DATA_PATH
-# class Mixin:
-#     """Создаем класс для вывода информации о созданном объекте"""
-#
-#     def __init__(self):
-#         print(repr(self))
-#
-#     def __repr__(self):
-#         return f'Создан объект класса {self.__class__.__name__} с атрибутами: {self.__dict__}'
-
 class Vacancy:
     vacancy_title: str  # название вакансии
     vacancy_link: str  # ссылка на вакансию
     vacancy_city: str  # город вакансии
     company_name: str  # название работодателя
-    salary_from: float  # зарплата от
-    salary_to: float  # зарплата до
+    salary_from: int  # зарплата от
+    salary_to: int  # зарплата до
     currency: str  # валюта
     vacancy_responsibility: str  # описание вакансии
     vacancy_requirements: str  # требования к вакансии
@@ -52,16 +39,13 @@ class Vacancy:
     #     self.vacancy_responsibility = vacancy_responsibility
     #     self.vacancy_requirements = vacancy_requirements
 
-    def create_vacancy(self, dictionary):
-        """Метод для добавления вакансии"""
-        pass
-
     def __str__(self):
         """Добавляем строковое отображение"""
         print('*' * 150)
+
         return (f'Название вакансии, ссылка: {self.vacancy_title}, {self.vacancy_link}\n'
                 f'Город, компания: {self.vacancy_city}, {self.company_name} \n'
-                f'Уровень ЗП: {self.salary_from} - {self.salary_to}, {self.currency}\n'
+                f'Уровень ЗП, валюта: {self.salary_from} - {self.salary_to}, {self.currency}\n'
                 f'Описание: {self.vacancy_responsibility}\n'
                 f'Требования: {self.vacancy_requirements}')
 
@@ -83,7 +67,6 @@ class Vacancy:
             return 'usd'
         else:
             return False
-    @staticmethod
+
     def __lt__(self, other):
-        if self.salary_from > other.salary_from:
-            return self.salary_from
+        return self.salary_from < other.salary_from
