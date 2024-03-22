@@ -1,4 +1,7 @@
+import json
+import os
 from abc import ABC, abstractmethod
+from config import DATA_PATH
 
 
 class Saver(ABC):
@@ -13,11 +16,11 @@ class Saver(ABC):
         pass
 
     @abstractmethod
-    def get_vacancy(self):
+    def get_json(self, vacancy_json):
         pass
 
     @abstractmethod
-    def add_vacancy(self):
+    def add_vacancy(self, sorted_list):
         pass
 
     @abstractmethod
@@ -28,13 +31,13 @@ class Saver(ABC):
 class JSONSaver(Saver):
 
     def __init__(self):
-        pass
+        self.file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
 
     def __repr__(self):
         pass
 
-    def save_json(self, vacancy_json):
-        file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
+    def get_json(self, vacancy_json):
+        # file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
         vacancy_list = []
         for item in vacancy_json:
             if item['salary']:
@@ -56,13 +59,15 @@ class JSONSaver(Saver):
                              }
                 vacancy_list.append(item_dict)
 
-            with open(file_json, 'w', encoding='utf-8') as file:
-                json.dump(vacancy_list, file, indent=4, ensure_ascii=False)
-
         return vacancy_list
 
-    def add_vacancy(self):
-        pass
+    def save_vacancy(self, filtered_vacancy_list):
+        with open(self.file_json, 'w', encoding='utf-8', errors='ignore') as file:
+            json.dumps(filtered_vacancy_list, file, indent=4, ensure_ascii=False)
+
+    def add_vacancy(self, filtered_vacancy_list):
+        with open(self.file_json, 'a+', encoding='utf-8', errors='ignore') as file:
+            json.dump(filtered_vacancy_list, file, indent=4, ensure_ascii=False)
 
     def del_vacancy(self):
         pass

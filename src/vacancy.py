@@ -38,24 +38,20 @@ class Vacancy:
     #     self.vacancy_responsibility = vacancy_responsibility
     #     self.vacancy_requirements = vacancy_requirements
 
-
     def __repr__(self):
-        return (f'Vacancy {self.vacancy_title}, {self.vacancy_link}'
+        return (f'Вакансия {self.vacancy_title}, {self.vacancy_link}'
                 f'{self.vacancy_city}, {self.company_name}'
                 f'{self.salary_from} - {self.salary_to}, {self.currency}'
                 f'{self.vacancy_responsibility}, {self.vacancy_requirements}')
+
     def __str__(self):
         """Добавляем строковое отображение"""
         print('*' * 150)
-
         return (f'Название вакансии, ссылка: {self.vacancy_title}, {self.vacancy_link}\n'
                 f'Город, компания: {self.vacancy_city}, {self.company_name} \n'
                 f'Уровень ЗП, валюта: {self.salary_from} - {self.salary_to}, {self.currency}\n'
-                f'Описание: {self.vacancy_responsibility}\n'
-                f'Требования: {self.vacancy_requirements}')
-
-    def validate_vacancy(self):
-        pass
+                f'Описание: {self.vacancy_responsibility.replace("<highlighttext>", "").replace("</highlighttext>", "")}\n'
+                f'Требования: {self.vacancy_requirements.replace("<highlighttext>", "").replace("</highlighttext>", "")}\n')
 
     def check_salary_from(self):
         """Метод проверяет указан ли начальный уровень зарплаты"""
@@ -65,7 +61,7 @@ class Vacancy:
             return False
 
     def check_currency(self):
-        """Проверка валюты RUR или USD"""
+        """Проверка валюты RUR или USD, другая"""
         if self.currency == "RUR":
             return 'RUR'
         elif self.currency == "USD":
@@ -74,4 +70,5 @@ class Vacancy:
             return False
 
     def __lt__(self, other):
+        """Метод сравнивает начальную зарплату между экземплярами класса"""
         return self.salary_from < other.salary_from
