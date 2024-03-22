@@ -15,7 +15,7 @@ def user_interaction():
     print(repr(hh_api))
 
     hh_save = JSONSaver()  # создаем экземпляр класса JSONSaver
-    list_vacancy = hh_save.get_json(hh_vacancy)  # вызываем метод класса JSONSaver для формирования саиска вакансий
+    list_vacancy = hh_save.get_json(hh_vacancy)  # вызываем метод класса JSONSaver для формирования списка вакансий
 
     vacancies = [Vacancy(item) for item in list_vacancy]  # Создание экземпляров класса Вакансии из списка
     # print(vacancies, sep='\n')
@@ -32,7 +32,9 @@ def user_interaction():
         filtered_vacancy_list.append(vacancy)
         print(f'{n + 1}. {vacancy}')
 
-    hh_save.save_vacancy(filtered_vacancy_list)
+    temp = hh_save.save_vacancy(sorted_vacancy)
+    for i in temp:
+        print(i)
 
 
     # # for vacancy in sorted_vacancy_list:

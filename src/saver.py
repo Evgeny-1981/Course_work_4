@@ -63,7 +63,7 @@ class JSONSaver(Saver):
 
     def save_vacancy(self, filtered_vacancy_list):
         with open(self.file_json, 'w', encoding='utf-8', errors='ignore') as file:
-            json.dumps(filtered_vacancy_list, file, indent=4, ensure_ascii=False)
+            json.dump(filtered_vacancy_list, file, indent=4, ensure_ascii=False)
 
     def add_vacancy(self, filtered_vacancy_list):
         with open(self.file_json, 'a+', encoding='utf-8', errors='ignore') as file:
