@@ -6,7 +6,7 @@ from src.vacancy import Vacancy
 
 
 class Saver(ABC):
-    """Создаем абстрактный класса рабты с вакансиями"""
+    """Создаем абстрактный класса работы с вакансиями"""
 
     @abstractmethod
     def __init__(self):
@@ -28,16 +28,17 @@ class Saver(ABC):
     def read_vacancy(self):
         pass
 
-    # @abstractmethod
-    # def add_vacancy(self, sorted_list):
-    #     pass
-
     @abstractmethod
     def del_vacancy(self):
         pass
 
+    @abstractmethod
+    def show_vacancy(self):
+        pass
+
 
 class JSONSaver(Saver):
+    """Создаем класс для работы с JSON файлом"""
 
     def __init__(self):
         self.file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
@@ -46,12 +47,12 @@ class JSONSaver(Saver):
         if not os.path.exists(self.file_json):
             with open(self.file_json, 'w+') as file:
                 json.dump(self.data_json, file)
-                print(f"Файл {self.file_json} создан")
+                print(f"Создан файл для записи результатов по пути - {self.file_json}")
         self.vacancy_list = []
-        self.data = None  # self.read_vacancy()
+        self.data = None
 
     def __repr__(self):
-        pass
+        return f'Создан экземпляр класса {self.__class__.__name__}\n'
 
     def get_json(self, vacancy_json):
         """Метод получает список вакансий по запросу и преобразует его в список словарей"""
@@ -77,11 +78,11 @@ class JSONSaver(Saver):
 
         return self.vacancy_list
 
-    def save_vacancy(self, filtered_vacancy_list):
+    def save_vacancy(self, r_vacancy_list):
         """Метод для сохранения вакансий в JSON файл"""
         with open(self.file_json, 'w', encoding='utf-8', errors='ignore') as file:
-            json.dump(filtered_vacancy_list, file, indent=4, ensure_ascii=False)
-        return filtered_vacancy_list
+            json.dump(r_vacancy_list, file, indent=4, ensure_ascii=False)
+        return r_vacancy_list
 
     def read_vacancy(self):
         """Метод для чтения вакансий из JSON файла"""
@@ -93,20 +94,17 @@ class JSONSaver(Saver):
         """Метод для удаления вакансий из JSON файла"""
         with open(self.file_json, 'w') as file:
             json.dump(self.data, file)
-        # self.data = []
         print("Данные удалены")
 
     def show_vacancy(self):
-        """Метод для отображения вакансий из сохраненньго ранее JSON файла"""
+        """Метод для отображения вакансий из сохраненного ранее JSON файла"""
         with open(self.file_json, 'r', encoding='utf-8', errors='ignore') as file:
             data = json.load(file)
-
             if data is not None:
                 vacancies = [Vacancy(item) for item in data]
                 sorted_vacancy = sorted(vacancies, reverse=True)
                 for i, vacancy in enumerate(sorted_vacancy):
                     print(f'{i + 1}. {vacancy}')
-
             else:
                 print("Файл пустой")
                 return data

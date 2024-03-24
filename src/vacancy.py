@@ -26,18 +26,6 @@ class Vacancy:
         else:
             self.vacancy_requirements = "Не указано"
 
-    # def __init__(self, vacancy_title, vacancy_link, vacancy_city, company_name,
-    #              salary_from, salary_to, currency, vacancy_responsibility, vacancy_requirements):
-    #     self.vacancy_title = vacancy_title
-    #     self.vacancy_link = vacancy_link
-    #     self.vacancy_city = vacancy_city
-    #     self.company_name = company_name
-    #     self.salary_from = salary_from
-    #     self.salary_to = salary_to
-    #     self.currency = currency
-    #     self.vacancy_responsibility = vacancy_responsibility
-    #     self.vacancy_requirements = vacancy_requirements
-
     def __repr__(self):
         return (f'Вакансия {self.vacancy_title}, {self.vacancy_link}'
                 f'{self.vacancy_city}, {self.company_name}'
@@ -70,7 +58,7 @@ class Vacancy:
             return False
 
     def __lt__(self, other):
-        """Метод сравнивает начальную зарплату между экземплярами класса"""
+        """Метод сравнивает начальную зарплату между экземплярами класса для сортировки по возрастанию"""
         if self.salary_from is str:
             self.salary_from = 0
         if other.salary_from is str:
