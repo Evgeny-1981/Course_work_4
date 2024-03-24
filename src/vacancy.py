@@ -71,4 +71,8 @@ class Vacancy:
 
     def __lt__(self, other):
         """Метод сравнивает начальную зарплату между экземплярами класса"""
+        if self.salary_from is str:
+            self.salary_from = 0
+        if other.salary_from is str:
+            other.salary_from = 0
         return self.salary_from < other.salary_from

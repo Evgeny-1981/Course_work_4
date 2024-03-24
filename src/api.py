@@ -34,7 +34,7 @@ class HeadHunterAPI(AbstractAPI):
         """Метод для запроса к HeadHunter для получения вакансий"""
 
         self.params['text'] = query_vacancy
-        while self.params.get('page') != 2:
+        while self.params.get('page') != 5:
             response = requests.get(self.url, headers=self.headers, params=self.params)
             vacancy = response.json()['items']
             self.vacancy.extend(vacancy)
