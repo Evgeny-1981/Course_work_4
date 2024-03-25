@@ -21,7 +21,7 @@ class Saver(ABC):
         pass
 
     @abstractmethod
-    def save_vacancy(self, sorted_list):
+    def save_vacancy(self, vacancy_list):
         pass
 
     @abstractmethod
@@ -43,13 +43,12 @@ class JSONSaver(Saver):
     def __init__(self):
         self.file_json = os.path.join(DATA_PATH, f'Vacancy_HH.json')
         self.file_name = self.file_json
-        self.data_json = None
+        self.data_json = []
         if not os.path.exists(self.file_json):
             with open(self.file_json, 'w+') as file:
                 json.dump(self.data_json, file)
                 print(f"Создан файл для записи результатов по пути - {self.file_json}")
         self.vacancy_list = []
-        self.data = None
 
     def __repr__(self):
         return f'Создан экземпляр класса {self.__class__.__name__}\n'
@@ -78,11 +77,11 @@ class JSONSaver(Saver):
 
         return self.vacancy_list
 
-    def save_vacancy(self, r_vacancy_list):
+    def save_vacancy(self, vacancy_list):
         """Метод для сохранения вакансий в JSON файл"""
         with open(self.file_json, 'w', encoding='utf-8', errors='ignore') as file:
-            json.dump(r_vacancy_list, file, indent=4, ensure_ascii=False)
-        return r_vacancy_list
+            json.dump(vacancy_list, file, indent=4, ensure_ascii=False)
+        # return json.dump(vacancy_list, file, indent=4, ensure_ascii=False)
 
     def read_vacancy(self):
         """Метод для чтения вакансий из JSON файла"""
@@ -93,18 +92,18 @@ class JSONSaver(Saver):
     def del_vacancy(self):
         """Метод для удаления вакансий из JSON файла"""
         with open(self.file_json, 'w') as file:
-            json.dump(self.data, file)
+            json.dump(self.data_json, file)
         print("Данные удалены")
 
     def show_vacancy(self):
         """Метод для отображения вакансий из сохраненного ранее JSON файла"""
         with open(self.file_json, 'r', encoding='utf-8', errors='ignore') as file:
             data = json.load(file)
-            if data is not None:
+            if len(data) != 0:
                 vacancies = [Vacancy(item) for item in data]
                 sorted_vacancy = sorted(vacancies, reverse=True)
                 for i, vacancy in enumerate(sorted_vacancy):
                     print(f'{i + 1}. {vacancy}')
             else:
-                print("Файл пустой")
+                print("Файл с вакансиями пуст.")
                 return data

@@ -1,7 +1,6 @@
 from src.api import HeadHunterAPI
 from src.saver import JSONSaver
 from src.vacancy import Vacancy
-import re
 
 
 def user_interaction():
@@ -14,22 +13,26 @@ def user_interaction():
 
     # создаем экземпляр класса JSONSaver
     hh_save = JSONSaver()
+
+    # Проверка длины содержимого файла JSON
     data = hh_save.read_vacancy()
-    # vacancy_show = Vacancy(hh_save.read_vacancy())
-    # if hh_save.show_vacancy() is not None:
-    if data is not None:
+    if len(data) != 0:
         query_show = input(
             "Хотите посмотреть список вакансий из существующего JSON файла(Да - Y, Нет - Enter)? ").title()
         if query_show == "Y":
             hh_save.show_vacancy()
-
-    # if hh_save.show_vacancy is not None:
-    if data is not None:
         query_delete = input("Хотите для начала удалить информацию из JSON файла(Да - Y, Нет - Enter)? ").title()
         if query_delete == "Y":
             hh_save.del_vacancy()
         else:
             print("Новый запрос будет добавлен в существующий файл")
+
+    # if len(data) != 0:
+    #     query_delete = input("Хотите для начала удалить информацию из JSON файла(Да - Y, Нет - Enter)? ").title()
+    #     if query_delete == "Y":
+    #         hh_save.del_vacancy()
+    #     else:
+    #         print("Новый запрос будет добавлен в существующий файл")
 
     query_vacancy = input("Какую вакансию ищем? ").title()
     vacancy_city = input("В каком городе? ").title()
@@ -43,7 +46,7 @@ def user_interaction():
     # вызываем метод класса JSONSaver для формирования списка словарей вакансий
     list_vacancy = hh_save.get_json(hh_vacancy)
 
-    # сортировка по городу и добавляем в список отфильтрованные по городу вакансии.
+    # Сортировка по городу и добавляем в список отфильтрованные по городу вакансии.
     # создание списка ТОП вакансий, заданных пользователем
     for vacancy in list_vacancy:
         if vacancy['vacancy_city'] == vacancy_city and vacancy['salary_from'] >= query_salary:
@@ -51,49 +54,29 @@ def user_interaction():
     for vacancy in sorted_vacancy_list[:vacancy_top_n]:
         filtered_vacancy_list.append(vacancy)
 
-    # Считываем информацию из файла JSON
-    r_vacancy_list = hh_save.read_vacancy()
-    if r_vacancy_list is None:
-        r_vacancy_list = filtered_vacancy_list
-    else:
-        for vac in filtered_vacancy_list:
-            r_vacancy_list.append(vac)
-
-    # Сохраняем список отфильрованных вакансий в JSON
-    save_vacancy_list = hh_save.save_vacancy(r_vacancy_list)
-
     # Создаем экземпляры класса Vacancy на основе созданного списка
-    vacancies = [Vacancy(item) for item in save_vacancy_list]
+    vacancies = [Vacancy(item) for item in filtered_vacancy_list]
 
     # Сортируем в магическом методе __lt__ класса Vacancy по начальной зарплате
     sorted_vacancy = sorted(vacancies, reverse=True)
 
     # Выводим информацию на экран
     for i, vacancy in enumerate(sorted_vacancy[:vacancy_top_n]):
-        if query_vacancy.title() or query_vacancy.lower() in re.split(r"[, /:-]", vacancy['vacancy_title']):
-            print(f'{i + 1}. {vacancy}')
-
-    """Тут заготовка для добавления вакансии вручную"""
-    # key_list = ["vacancy_title", "vacancy_link", "vacancy_city", "company_name", "salary_from",
-    #             "salary_to", "currency", "vacancy_responsibility", "vacancy_requirements"]
-    # vacancy_title = input("Введите название вакансии: ")
-    # vacancy_link = input("Укажите ссылку на вакансию: ")
-    # vacancy_city = input("Укажите город: ")
-    # company_name = input("Укажите название компании: ")
-    # salary_from = int(input("Уажите зарплату ОТ: "))
-    # salary_to = int(input("Укажите ззарплату ДО: "))
-    # currency = input("Валюта зарплаты: ")
-    # vacancy_responsibility = input("Краткое описание вакансии: ")
-    # vacancy_requirements = input("Требования к соискателю: ")
-    # value_list = [vacancy_title, vacancy_link, vacancy_city, company_name, salary_from, salary_to,
-    #               currency, vacancy_responsibility, vacancy_requirements]
-    # dict_new_vacancy = dict(zip(key_list, value_list * len(key_list)))
+        print(f'{i + 1}. {vacancy}')
 
     # Считываем информацию из файла JSON
-    # filtered_vacancy_list = hh_save.read_vacancy()
+    vacancy_from_json = hh_save.read_vacancy()
 
-    # Добавляем новый словарь с вакансиями
-    # filtered_vacancy_list.append(dict_new_vacancy)
-
-    # Перезаписываем файл JSON
-    # hh_save.save_vacancy(filtered_vacancy_list)
+    if len(vacancy_from_json) == 0:
+        print("Файл был пустой")
+        # Записываем отфильтрованную информаию о вакансиях в файл
+        hh_save.save_vacancy(filtered_vacancy_list)
+        print(f'По запросу найдено {len(list_vacancy)} вакансий. В файл записано {vacancy_top_n} вакансий.')
+        print("Информация записана в файл Vacancy_HH.json")
+    else:
+        # Добавляем отфильтрованную информаию о вакансиях в существующий список файла
+        vacancy_from_json.extend(filtered_vacancy_list)
+        # Перезаписываем файл JSON
+        hh_save.save_vacancy(vacancy_from_json)
+        print(f'По запросу найдено {len(list_vacancy)} вакансий. В файл добавлено {vacancy_top_n} вакансии.')
+        print("Информация добавлена в файл Vacancy_HH.json")
