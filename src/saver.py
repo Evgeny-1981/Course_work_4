@@ -3,6 +3,7 @@ import os
 from abc import ABC, abstractmethod
 from config import DATA_PATH
 from src.vacancy import Vacancy
+import re
 
 
 class Saver(ABC):
@@ -97,13 +98,23 @@ class JSONSaver(Saver):
 
     def show_vacancy(self):
         """Метод для отображения вакансий из сохраненного ранее JSON файла"""
+        show_list = []
         with open(self.file_json, 'r', encoding='utf-8', errors='ignore') as file:
             data = json.load(file)
             if len(data) != 0:
-                vacancies = [Vacancy(item) for item in data]
+                query_vacancy = input(
+                    "Какую вакансию ищем (введите ключевое слово и нажмите Enter)? Enter - показать все: ").title()
+                for item in data:
+                    strings = re.split('-| |/|"', item['vacancy_title'])
+                    for string in strings:
+                        if query_vacancy.lower() in string.lower():
+                            show_list.append(item)
+                if len(show_list) == 0:
+                    print("По введенному ключевому слову вакансий не найдено.")
+                vacancies = [Vacancy(item) for item in show_list]
                 sorted_vacancy = sorted(vacancies, reverse=True)
                 for i, vacancy in enumerate(sorted_vacancy):
                     print(f'{i + 1}. {vacancy}')
             else:
                 print("Файл с вакансиями пуст.")
-                return data
+        return data

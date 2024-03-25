@@ -18,21 +18,14 @@ def user_interaction():
     data = hh_save.read_vacancy()
     if len(data) != 0:
         query_show = input(
-            "Хотите посмотреть список вакансий из существующего JSON файла(Да - Y, Нет - Enter)? ").title()
+            "Хотите посмотреть список вакансий из существующего JSON файла(Да-'Y', Нет-'Enter')? ").title()
         if query_show == "Y":
             hh_save.show_vacancy()
-        query_delete = input("Хотите для начала удалить информацию из JSON файла(Да - Y, Нет - Enter)? ").title()
-        if query_delete == "Y":
-            hh_save.del_vacancy()
+        query_delete = input("Хотите для начала удалить информацию из JSON файла(Да-'Y', Нет-'Enter')? ").title()
+        if query_delete != "Y":
+            print("Новый запрос будет добавлен в существующий файл.")
         else:
-            print("Новый запрос будет добавлен в существующий файл")
-
-    # if len(data) != 0:
-    #     query_delete = input("Хотите для начала удалить информацию из JSON файла(Да - Y, Нет - Enter)? ").title()
-    #     if query_delete == "Y":
-    #         hh_save.del_vacancy()
-    #     else:
-    #         print("Новый запрос будет добавлен в существующий файл")
+            hh_save.del_vacancy()
 
     query_vacancy = input("Какую вакансию ищем? ").title()
     vacancy_city = input("В каком городе? ").title()
@@ -71,12 +64,14 @@ def user_interaction():
         print("Файл был пустой")
         # Записываем отфильтрованную информаию о вакансиях в файл
         hh_save.save_vacancy(filtered_vacancy_list)
-        print(f'По запросу найдено {len(list_vacancy)} вакансий. В файл записано {vacancy_top_n} вакансий.')
+        print(
+            f'По запросу найдено {len(sorted_vacancy_list)} вакансий. В файл записано {len(sorted_vacancy)} вакансий.')
         print("Информация записана в файл Vacancy_HH.json")
     else:
         # Добавляем отфильтрованную информаию о вакансиях в существующий список файла
         vacancy_from_json.extend(filtered_vacancy_list)
         # Перезаписываем файл JSON
         hh_save.save_vacancy(vacancy_from_json)
-        print(f'По запросу найдено {len(list_vacancy)} вакансий. В файл добавлено {vacancy_top_n} вакансии.')
+        print(
+            f'По запросу найдено {len(sorted_vacancy_list)} вакансий. В файл добавлено {len(sorted_vacancy)} вакансии.')
         print("Информация добавлена в файл Vacancy_HH.json")
