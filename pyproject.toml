@@ -1,4 +1,4 @@
-clear[tool.poetry]
+[tool.poetry]
 name = "course-work-4"
 version = "0.1.0"
 description = ""
@@ -8,6 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 requests = "^2.31.0"
+pytest = "^8.1.1"
+pytest-cov = "^5.0.0"
+coverage = "^7.4.4"
 
 
 [build-system]
