@@ -104,7 +104,7 @@ class JSONSaver(Saver):
             if len(data) != 0:
                 query_vacancy = input(
                     "Введите ключевое слово и нажмите Enter\n"
-                    "(Если ничего не вводить и нажать Enter, то программа перейдет к следующему шагу): ").title()
+                    "(Если ничего не вводить и нажать Enter, то программа выведет все записи из файла): ").title()
                 if len(query_vacancy) != 0:
                     for item in data:
                         strings = re.split('-| |/|"', item['vacancy_title'])
