@@ -18,7 +18,7 @@ def user_interaction():
     data = hh_save.read_vacancy()
     if len(data) != 0:
         query_show = input(
-            "Хотите посмотреть список вакансий из существующего JSON файла(Да-'Y', Нет-'Enter')? ").title()
+            "Хотите посмотреть список вакансий по ключевому слову из существующего JSON файла(Да-'Y', Нет-'Enter')? ").title()
         if query_show == "Y":
             hh_save.show_vacancy()
         query_delete = input("Хотите для начала удалить информацию из JSON файла(Да-'Y', Нет-'Enter')? ").title()
