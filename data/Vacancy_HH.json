@@ -1,113 +1,47 @@
 [
     {
-        "vacancy_title": "Junior Backend Developer (Python и SQL)",
-        "vacancy_link": "https://hh.ru/vacancy/95090779",
+        "vacancy_title": "Инженер-программист PLC / ПЛК / АСУТП (Москва)",
+        "vacancy_link": "https://hh.ru/vacancy/94110709",
         "vacancy_city": "Москва",
-        "company_name": "e-Comet",
-        "salary_from": 50000,
-        "salary_to": 70000,
+        "company_name": "СВА-Групп",
+        "salary_from": 135000,
+        "salary_to": 154000,
         "currency": "RUR",
-        "vacancy_responsibility": "Желание расти с проектом и учиться новым технологиям, расширять компетенции. Написание качественного кода и тестов к нему.",
-        "vacancy_requirements": "Высшее образование (можно неоконченное/неполное) технического ВУЗа последнего или предпоследнего курса. Логичный и структурированный подход к решению задач, способность аргументированно..."
+        "vacancy_responsibility": "1. Разработка программного обеспечения для PLC и IPC Siemens под руководством тимлида. 2. Разработка обмена информации с контрольно-измерительными приборами...",
+        "vacancy_requirements": "1. Знание минимум одной из перечисленных программных средств: TIA Portal, Simatic Step7, Codesys 3.5, WinCC flexible. 2. "
     },
     {
-        "vacancy_title": "Python ML-разработчик (искусственный интеллект)",
-        "vacancy_link": "https://hh.ru/vacancy/95020549",
+        "vacancy_title": "Инженер - программист АСУТП",
+        "vacancy_link": "https://hh.ru/vacancy/90791989",
         "vacancy_city": "Москва",
-        "company_name": "Элемент",
-        "salary_from": 180000,
-        "salary_to": 0,
-        "currency": "RUR",
-        "vacancy_responsibility": "Разработка, тестирование и отладка программного обеспечения. Разработкой алгоритмов комплексирования данных от внешних источников (камеры, лидары, навигационные приёмники, etc.). ",
-        "vacancy_requirements": "Навыки применения инструментальных средств машинного обучения (профильных библиотек <highlighttext>Python</highlighttext>, Keras, TensorFlow, PyTorch или др.). Опыт разработки систем Computer Vision, использование..."
-    },
-    {
-        "vacancy_title": "Бэкенд-разработчик Python",
-        "vacancy_link": "https://hh.ru/vacancy/95437130",
-        "vacancy_city": "Москва",
-        "company_name": "Гальченко Тимофей Валерьевич",
-        "salary_from": 60000,
-        "salary_to": 110000,
-        "currency": "RUR",
-        "vacancy_responsibility": "1) Написание системы прослеживаемости для огромного производства по переработке продукции. 2) Система автоматизации работы с 1С. 1) Написание чат...",
-        "vacancy_requirements": "1) 1.5+ год опыта работы в качестве бэкенд-разработчика (<highlighttext>Python</highlighttext>). 2) Опыт в разработке чат-ботов на aiogram..."
-    },
-    {
-        "vacancy_title": "Junior python developer (Удаленно)",
-        "vacancy_link": "https://hh.ru/vacancy/93742422",
-        "vacancy_city": "Москва",
-        "company_name": "CommerceChamp",
-        "salary_from": 100000,
-        "salary_to": 0,
-        "currency": "RUR",
-        "vacancy_responsibility": "Системное администрирование и работа с Ubuntu. Управление сервисами с помощью systemctl - опыт работы, знание основных команд (проверка статуса сервиса, запуск...",
-        "vacancy_requirements": "CURL - опыт работы и понимание основных принципов. Многопоточность в <highlighttext>Python</highlighttext> (threading). Знание SQL. Опыт развертывания postgreSQL на сервере и её..."
-    },
-    {
-        "vacancy_title": "Телохранитель / личный охранник",
-        "vacancy_link": "https://hh.ru/vacancy/95415599",
-        "vacancy_city": "Казань",
-        "company_name": "Служба безопасности",
+        "company_name": "АТ-Газ",
         "salary_from": 150000,
         "salary_to": 0,
         "currency": "RUR",
-        "vacancy_responsibility": "Комплексное обеспечение безопасности Клиента. Предупреждение, обнаружение, пресечение угроз безопасности. Обеспечение комфортного пребывания Клиента в любых условиях. Выполнение личных поручений. ",
-        "vacancy_requirements": "Опыт работы не менее 3-х лет в личной охране. УЧО 6 разряда. Разряд по единоборствам. Разрешение на ношение огнестрельного..."
+        "vacancy_responsibility": "При необходимости, участие в работах по конфигурации и настройке ПТК <highlighttext>АСУТП</highlighttext>, установке и настройке системного ПО, ППО, конфигурации компьютерного и...",
+        "vacancy_requirements": "Опыт реализации проектов <highlighttext>АСУТП</highlighttext> в нефтехимии и/или нефтепереработке на позиции <highlighttext>инженера</highlighttext> - программиста <highlighttext>АСУТП</highlighttext> РСУ/ПАЗ от 3 лет. "
     },
     {
-        "vacancy_title": "Охранник",
-        "vacancy_link": "https://hh.ru/vacancy/95167914",
-        "vacancy_city": "Казань",
-        "company_name": "Юрко Вадим Валентинович",
-        "salary_from": 120000,
-        "salary_to": 300000,
-        "currency": "RUR",
-        "vacancy_responsibility": "Охрана строительных объектов, предприятий, гос.учреждений и т.п. на территории РФ и стран СНГ.. Контроль общественного порядка. Обеспечение безопасности по...",
-        "vacancy_requirements": "Опыт желателен, но не обязателен. Лицензия не требуется."
-    },
-    {
-        "vacancy_title": "Охранник",
-        "vacancy_link": "https://hh.ru/vacancy/95422411",
-        "vacancy_city": "Казань",
-        "company_name": "Веллдан",
-        "salary_from": 20000,
+        "vacancy_title": "Ведущий инженер - программист АСУТП",
+        "vacancy_link": "https://hh.ru/vacancy/93973786",
+        "vacancy_city": "Москва",
+        "company_name": "АГРАНА Фрут Московский регион",
+        "salary_from": 200000,
         "salary_to": 0,
         "currency": "RUR",
-        "vacancy_responsibility": "Обеспечение порядка на предприятии. - Контроль доступа в здание. - Реагирование на системы оповещения и другие. - Следить за объектом с помощью видеокамер.",
-        "vacancy_requirements": "Рассмотри сотрудников без опыта."
+        "vacancy_responsibility": "7) Обеспечение экспертной поддержки в. - формировании технических заданий для систем <highlighttext>АСУТП</highlighttext>. - формирование ландшафта аппаратного и программного обеспечений, технических решений <highlighttext>АСУТП</highlighttext>.",
+        "vacancy_requirements": "Понимание назначения и принципов работы логических программируемых контроллеров (Siemens S7; GE Fanuc; Delta – как минимум одного из списка). "
     },
     {
-        "vacancy_title": "Охранник",
-        "vacancy_link": "https://hh.ru/vacancy/94590694",
-        "vacancy_city": "Казань",
-        "company_name": "HRhelp",
-        "salary_from": 110000,
-        "salary_to": 350000,
+        "vacancy_title": "Няня-гувернантка",
+        "vacancy_link": "https://hh.ru/vacancy/95534950",
+        "vacancy_city": "Москва",
+        "company_name": "Персонал-Бутик",
+        "salary_from": 150000,
+        "salary_to": 150000,
         "currency": "RUR",
-        "vacancy_responsibility": "Охрана строительных объектов, предприятий, гос.учреждений и т.п. на территории РФ и стран СНГ.. - Контроль общественного порядка. Обеспечение безопасности по...",
-        "vacancy_requirements": "Опыт желателен, но не обязателен."
-    },
-    {
-        "vacancy_title": "Охранник",
-        "vacancy_link": "https://hh.ru/vacancy/94197619",
-        "vacancy_city": "Казань",
-        "company_name": "ЧОО «БЛАГОЯР»",
-        "salary_from": 45000,
-        "salary_to": 55000,
-        "currency": "RUR",
-        "vacancy_responsibility": "Соблюдение должностных инструкций. Пресечение случаев хищения товара и имущества.",
-        "vacancy_requirements": "Tpудоустройcтвo в дeнь обpaщения! Oпыт paботы не имeет значeния, лицензия нe требуeтcя."
-    },
-    {
-        "vacancy_title": "Охранник",
-        "vacancy_link": "https://hh.ru/vacancy/94367105",
-        "vacancy_city": "Казань",
-        "company_name": "Зайнутдинов Ленар",
-        "salary_from": 45000,
-        "salary_to": 65000,
-        "currency": "RUR",
-        "vacancy_responsibility": "1.Обеспечение безопасности и порядка. 2.Принятие мер по предотвращению конфликтных ситуаций.",
-        "vacancy_requirements": "2.Дисциплина, ответственность, пунктуальность."
+        "vacancy_responsibility": "Развитие ребенка. Подготовка к школе. Когда ребенок в саду, убрать, приготовить, постирать. Девочка 6 лет.",
+        "vacancy_requirements": "Педагогическое образование Высшее. Знать школьные методики, советского времени. Опыт работы в школе обязательно. Опыт работы в семьях ( не менее трех..."
     },
     {
         "vacancy_title": "Гувернантка/гувернер для мальчика 6-ти лет",
@@ -121,17 +55,6 @@
         "vacancy_requirements": "Опыт работы от 2х лет в семьях с данной возрастной категорией. - Возможность предоставить рекомендации. - Знание программы начальных классов. - "
     },
     {
-        "vacancy_title": "Няня",
-        "vacancy_link": "https://hh.ru/vacancy/95422486",
-        "vacancy_city": "Москва",
-        "company_name": "Кадровое агентство Идеальные люди",
-        "salary_from": 180000,
-        "salary_to": 200000,
-        "currency": "RUR",
-        "vacancy_responsibility": "полный уход за ребенком (новорожденный). - прогулки и развитие. - уборка детской комнатой. - уход за игрушками, коляской. - уход за детским гардеробом. - сопровождение. - ",
-        "vacancy_requirements": "чистая и грамотная русская речь. - обязателен опыт работы в семьях от 3 лет. - обязателен опыт работы именно с грудничками. - "
-    },
-    {
         "vacancy_title": "Гувернантка/гувернер к девочке 7 лет",
         "vacancy_link": "https://hh.ru/vacancy/95217471",
         "vacancy_city": "Москва",
@@ -141,49 +64,5 @@
         "currency": "RUR",
         "vacancy_responsibility": "Гигиенические процедуры ,соблюдение режима дня и режима питания. Прогулки, активные игры. Помощь и контроль выполнения домашнего задания. Взаимодействие с педагогами...",
         "vacancy_requirements": "Образование: Высшее педагогическое. Опыт работы в семьях. Наличие рекомендаций. Грамотная русская речь. Эрудиция. Хорошая физическая форма."
-    },
-    {
-        "vacancy_title": "Няня к мальчику 4 года",
-        "vacancy_link": "https://hh.ru/vacancy/95454891",
-        "vacancy_city": "Москва",
-        "company_name": "Ларина Ирина Игоревна",
-        "salary_from": 110000,
-        "salary_to": 120000,
-        "currency": "RUR",
-        "vacancy_responsibility": "Возможность без проблем выезжать с семьей или оставаться ночевать; быть гибкой в случаях подмены другой няни (изредка). Мы обязательно проверим...",
-        "vacancy_requirements": "Обязательный опыт работы с детьми в возрасте от 3-х лет. - Эрудиция и образование, современные взгляды на развитие ребенка. - "
-    },
-    {
-        "vacancy_title": "Инженер-проектировщик (КР, АР, ГП, ВК, ОВ, ТХ, ЭМ, Слаботочные сети, АСУТП, ПОС)",
-        "vacancy_link": "https://hh.ru/vacancy/95122578",
-        "vacancy_city": "Сургут",
-        "company_name": "Строй-Проект",
-        "salary_from": 80000,
-        "salary_to": 0,
-        "currency": "RUR",
-        "vacancy_responsibility": "Взаимодействие со специалистами смежниками. Участие в согласовании технических решений у Заказчиков, в экспертизе совместно с главным <highlighttext>инженером</highlighttext> проекта. ",
-        "vacancy_requirements": "Уверенный пользователь AutoCAD, владение программой 3D-моделирования или желание ее освоить будет преимуществом. Знание нормативно-технической документации в сфере..."
-    },
-    {
-        "vacancy_title": "Middle QA-инженер (ручное тестирование)",
-        "vacancy_link": "https://hh.ru/vacancy/95493724",
-        "vacancy_city": "Москва",
-        "company_name": "Автостэлс",
-        "salary_from": 150000,
-        "salary_to": 0,
-        "currency": "RUR",
-        "vacancy_responsibility": "Цифровая платформа для сопровождения всего цикла поставок автозапчастей. Написание тест-кейсов. Написание документации. Тестирование задач.",
-        "vacancy_requirements": "Знание методов и методик тестирования. Опыт тестирования web-приложений (frontend & backend). Опыт тестирования десктопных приложений. Знание SQL. Опыт работы с..."
-    },
-    {
-        "vacancy_title": "Junior QA engineer",
-        "vacancy_link": "https://hh.ru/vacancy/95420019",
-        "vacancy_city": "Москва",
-        "company_name": "Виво Рус (VIVO RUS LLC)",
-        "salary_from": 70000,
-        "salary_to": 0,
-        "currency": "RUR",
-        "vacancy_responsibility": "Mobile phone software test:Participate in the new project software ft basic function test,participate in software maintenance version basic...",
-        "vacancy_requirements": "Have a good communication skills in English；. Have a certain communication knowledge basic. Have a certain mobile phone software test..."
     }
 ]
