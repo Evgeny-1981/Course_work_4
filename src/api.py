@@ -23,7 +23,7 @@ class HeadHunterAPI(AbstractAPI):
 
     def __init__(self):
         self.url = 'http://api.hh.ru/vacancies'
-        self.headers = {'User-Agent': 'HH-User-Agent'}
+        self.headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36'}
         self.params = {'text': '', 'page': 0, 'per_page': 100, 'search_field': 'name'}
         self.vacancy = []
 
